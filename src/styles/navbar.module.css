@@ -1,12 +1,22 @@
+:root {
+  --primary-color: #1D9BF0;
+  --background-color: #15202B;
+  --text-color: #FFFFFF;
+  --hover-color: #EFF3F4;
+}
+
 .navbar {
   height: 6.5rem;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: transparent;
   z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  transition: all 0.3s ease;
 }
 
 .navbarContainer {
@@ -14,69 +24,158 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 1200px;
   padding: 0 3rem;
   margin-top: 1rem;
 }
 
 .navbarContainer > h1 {
-  font-family: "BestermindRegular";
-  color: var(--primary-2);
+  font-family: "BestermindRegular", sans-serif;
+  color: var(--primary-color);
   font-size: 2.5rem;
   user-select: none;
 }
 
-.navLinkContainer {
-  margin-top: 2rem;
+/* Mobile Drawer Styles */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background-color: var(--background-color);
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
 }
 
-.drawer > .MuiBackdropRoot {
-  background: rgba(33, 33, 33, 0.15) !important;
-  backdrop-filter: blur(20px) !important;
+.mobile-drawer.open {
+  transform: translateX(0);
 }
 
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  z-index: 99;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.nav-link:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+.nav-link svg {
+  margin-right: 1rem;
+}
+
+/* Responsive Breakpoints */
 @media (max-width: 1100px) {
   .navbarContainer {
     padding: 0 2rem;
   }
+
   .navbarContainer > h1 {
     font-size: 2.2rem;
-  }
-  .navMenu {
-    font-size: 2.2rem;
-    margin-top: -1.5rem;
   }
 }
 
 @media (max-width: 800px) {
-  .navLinkContainer {
-    margin-top: 3rem;
+  .navbar {
+    height: 5.5rem;
+  }
+
+  .navbarContainer {
+    padding: 0 1.5rem;
+  }
+
+  .navbarContainer > h1 {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 600px) {
-  .navMenu {
-    color: var(--primary-2);
-  }
-  .navbarContainer > h1 {
-    font-size: 2rem;
-  }
-  .navMenu:hover {
-    color: var(--primary-2);
-  }
-  .MuiDrawerPaper {
-    border-radius: 0 !important;
-  }
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) {
   .navbar {
     height: 5rem;
   }
+
   .navbarContainer {
     padding: 0 1rem;
-    margin-top: 0rem;
   }
+
+  .navbarContainer > h1 {
+    font-size: 1.8rem;
+  }
+
+  .mobile-drawer {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    height: 4.5rem;
+  }
+
   .navbarContainer > h1 {
     font-size: 1.5rem;
   }
+
+  .mobile-drawer {
+    width: 220px;
+  }
+}
+
+/* Desktop Navigation */
+@media (min-width: 1101px) {
+  .mobile-menu-icon {
+    display: none;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+/* Accessibility and Interaction */
+.nav-link:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -18,12 +18,12 @@ function Landing() {
 
     return (
         <div className={styles.landing} style={{
-            backgroundColor: theme.quaternary
+            background: theme.quaternary
         }}>
             <div className={styles.landingContainer}>
                 <div
                     className={styles.landingContainerLeft}
-                    style={{ backgroundColor: theme.quaternary }}
+                    // style={{ backgroundColor: theme.quaternary }}
                 >
                     <div className={styles.lclContent}>
                         {socialsData.linkedIn && (
@@ -88,12 +88,12 @@ function Landing() {
                     className={styles.landingImg}
                     style={{
                         opacity: `${drawerOpen ? '0' : '1'}`,
-                        borderColor: theme.primary,
+                        // borderColor: theme.primary,
                     }}
                 />
                 <div
                     className={styles.landingContainerRight}
-                    style={{ backgroundColor: theme.secondary }}
+                    // style={{ backgroundColor: theme.secondary }}
                 >
                     <div
                         className={styles.lcrContent}
