@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useContext } from 'react';
-import Fade from 'react-reveal/Fade';
+import { Fade } from 'react-awesome-reveal';
 import expImgBlack from '../../assets/svg/experience/expImgBlack.svg';
 import expImgWhite from '../../assets/svg/experience/expImgWhite.svg';
 import { ThemeContext } from '../../contexts/theme-context';
@@ -14,7 +14,7 @@ function ExperienceCard({ id, company, jobtitle, startYear, endYear }) {
 
 
     return (
-        <Fade bottom>
+        <Fade direction="up" triggerOnce>
             <div key={id} className={`${styles.experienceCard} bg-[#1E2732]`}>
                 <div className={styles.expcardImg} style={{ backgroundColor: theme.primary }}>
                     <Image src={theme.type === 'light' ? expImgBlack : expImgWhite} alt="" />

@@ -6,7 +6,7 @@ import {
     FaLinkedin,
     FaTwitter
 } from 'react-icons/fa';
-import Typed from 'react-typed';
+import { TypeAnimation } from 'react-type-animation';
 import { ThemeContext } from '../../contexts/theme-context';
 import { headerData } from '../../data/header-data';
 import { socialsData } from '../../data/socials-data';
@@ -101,16 +101,19 @@ function Landing() {
                     >
                         {/* <h6 style={{ color: theme.primary }}>{headerData.title}</h6> */}
                         <h1>{headerData.name}</h1>
-                        <Typed
-                            strings={[
+                        <TypeAnimation
+                            sequence={[
                                 'Backend Developer',
+                                2000,
                                 'Frontend Developer',
-                                'Fullstack Developer']}
-                            typeSpeed={40}
-                            backSpeed={50}
+                                2000,
+                                'Fullstack Developer',
+                                2000,
+                            ]}
+                            speed={50}
                             className={styles.typedHeader}
                             style={{ color: theme.primary, fontSize: '20px' }}
-                            loop
+                            repeat={Infinity}
                         />
                         <p>{headerData.desciption}</p>
 

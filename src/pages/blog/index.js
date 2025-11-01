@@ -1,5 +1,5 @@
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React, { useContext, useState } from 'react';
 import { AiOutlineHome } from "react-icons/ai";
 import { SingleBlog } from '../../components';

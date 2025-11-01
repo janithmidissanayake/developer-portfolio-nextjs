@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useContext } from 'react';
-import Fade from 'react-reveal/Fade';
+import { Fade } from 'react-awesome-reveal';
 import eduImgBlack from '../../assets/svg/education/eduImgBlack.svg';
 import eduImgWhite from '../../assets/svg/education/eduImgWhite.svg';
 import { ThemeContext } from '../../contexts/theme-context';
@@ -11,7 +11,7 @@ function EducationCard({ id, institution, course, startYear, endYear }) {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <Fade bottom>
+        <Fade direction="up" triggerOnce>
             <div key={id} className={`${styles.educationCard} bg-[#1E2732]`} >
                 <div className={styles.educardImg} style={{ backgroundColor: theme.primary }}>
                     <Image src={theme.type === 'light' ? eduImgBlack : eduImgWhite} alt="" />

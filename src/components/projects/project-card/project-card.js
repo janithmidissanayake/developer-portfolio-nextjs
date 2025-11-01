@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { FaCode, FaPlay } from 'react-icons/fa';
-import Fade from 'react-reveal/Fade';
+import { Fade } from 'react-awesome-reveal';
 import placeholder from '../../../assets/png/placeholder.png';
 import styles from '../../../styles/singleProject.module.css';
 
@@ -9,7 +9,7 @@ function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
 
 
     return (
-        <Fade bottom>
+        <Fade direction="up" triggerOnce>
             <div
                 key={id}
                 className={styles.singleProject}
