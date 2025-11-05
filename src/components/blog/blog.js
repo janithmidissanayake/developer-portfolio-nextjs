@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { HiArrowRight } from "react-icons/hi";
 import { ThemeContext } from '../../contexts/theme-context';
 import styles from '../../styles/blog.module.css';
@@ -9,6 +9,29 @@ import SingleBlog from './blog-card/blog-card';
 function Blog({blogs}) {
 
     const { theme } = useContext(ThemeContext);
+    const [showAll, setShowAll] = useState(false);
+    const blogsContainerRef = useRef(null);
+
+    const handleToggle = () => {
+        const wasExpanded = showAll;
+        setShowAll(!showAll);
+        
+        if (!wasExpanded) {
+            // Scroll down smoothly after expanding to show more blogs
+            setTimeout(() => {
+                window.scrollBy({ 
+                    top: 300, 
+                    behavior: 'smooth' 
+                });
+            }, 100);
+        } else {
+            // Scroll back up when collapsing
+            const blogSection = document.getElementById('blog');
+            if (blogSection) {
+                blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    };
 
     return (
         <>
@@ -21,8 +44,8 @@ function Blog({blogs}) {
                         <h1 style={{ color: theme.primary }}>Blog</h1>
                     </div>
                     <div className={styles.blogBody}>
-                        <div className={styles.blogBodyContainer}>
-                            {blogs.slice(0, 3).reverse().map(blog => (
+                        <div className={styles.blogBodyContainer} ref={blogsContainerRef}>
+                            {(showAll ? blogs : blogs.slice(0, 3)).reverse().map(blog => (
                                 <SingleBlog
                                     theme={theme}
                                     title={blog.title}
@@ -38,17 +61,16 @@ function Blog({blogs}) {
 
                         {blogs.length > 3 && (
                             <div className={styles.blogViewAll}>
-                                <Link href="/blog">
-                                    <button
-                                        className="text-[#15202B] bg-[#8B98A5] 
-                                    hover:bg-[#1D9BF0] transition-colors">
-                                        View All
-                                        <HiArrowRight
-                                            className="text-[#8B98A5] bg-[#15202B] 
-                                        w-[40px] h-[40px] p-2 text-base 
-                                        rounded-[50%] cursor-pointer transition-colors" />
-                                    </button>
-                                </Link>
+                                <button
+                                    onClick={handleToggle}
+                                    className="text-[#8B98A5] bg-[#15202B] 
+                                    w-[50px] h-[50px] p-2 text-xl 
+                                    rounded-[50%] cursor-pointer transition-all 
+                                    hover:bg-[#1D9BF0] hover:text-[#15202B] hover:scale-110"
+                                    style={{ transform: showAll ? 'rotate(-90deg)' : 'rotate(0deg)', transition: 'all 0.3s' }}
+                                    aria-label={showAll ? 'Show Less' : 'View All'}>
+                                    <HiArrowRight />
+                                </button>
                             </div>
                         )}
                     </div>
