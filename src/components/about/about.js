@@ -11,7 +11,7 @@ function About() {
 
     const { theme } = useContext(ThemeContext);
     return (
-        <div style={{ backgroundColor: theme.secondary }}>
+        <div style={{ background: theme.quaternary }}>
             <Container className={styles.about} id="about">
                 <div className={styles.lineStyling}>
                     <div className={styles.styleCircle} style={{ backgroundColor: theme.primary }}></div>

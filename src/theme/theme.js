@@ -18,7 +18,7 @@ export const theDarkTheme = {
     type: 'dark',
     primary: '#1D9BF0',
     secondary: '#0F0C41',
-    quaternary: '  linear-gradient(120deg, #0F172A, #0F0C41, #1E3A8A)',
+    quaternary: 'linear-gradient(120deg, #0F172A, #0F0C41, #1E3A8A)',
     // quaternaryLight: '#8b98a5',
     tertiary: '#EFF3F4',
     buttonColor: '#8B98A5',

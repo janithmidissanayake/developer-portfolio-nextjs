@@ -39,7 +39,7 @@ function Blog({blogs}) {
                 <div
                     className={styles.blog}
                     id="blog"
-                    style={{ backgroundColor: theme.secondary }}>
+                    style={{ background: theme.quaternary }}>
                     <div className={styles.blogHeader}>
                         <h1 style={{ color: theme.primary }}>Blog</h1>
                     </div>
@@ -50,9 +50,9 @@ function Blog({blogs}) {
                                     theme={theme}
                                     title={blog.title}
                                     desc={blog.description}
-                                    date={blog.published_at}
-                                    image={blog.cover_image}
-                                    url={blog.canonical_url}
+                                    date={blog.date}
+                                    image={blog.image}
+                                    url={blog.url}
                                     key={blog.id}
                                     id={blog.id}
                                 />

@@ -3,6 +3,73 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: inherit;
+}
+
+/* Frame around the profile image (sizes controlled responsively) */
+.profileImageFrame {
+  width: 350px;
+  height: 350px;
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animateFloat {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animateSpinSlow {
+  animation: spin-slow 20s linear infinite;
 }
 
 .landingContainer {
@@ -158,9 +225,19 @@
 }
 
 @media (max-width: 600px) {
+  /* Ensure landing content starts below fixed navbar */
+  .landing {
+    padding-top: 5.5rem;
+  }
+
   .landingContainer {
     flex-direction: column;
     justify-content: space-between;
+  }
+  /* Smaller image on mobile */
+  .profileImageFrame {
+    width: 180px;
+    height: 180px;
   }
   .landingImg {
     --img-size: 200px;

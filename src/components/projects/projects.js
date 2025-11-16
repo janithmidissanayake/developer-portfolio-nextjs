@@ -37,7 +37,7 @@ function Projects() {
     return (
         <>
             {projectsData.length > 0 && (
-                <div className={styles.projects} id="projects" style={{ backgroundColor: theme.secondary }}>
+                <div className={styles.projects} id="projects" style={{ background: theme.quaternary }}>
                     <div className={styles.projectsHeader}>
                         <h1 style={{ color: theme.primary }}>Projects</h1>
                     </div>

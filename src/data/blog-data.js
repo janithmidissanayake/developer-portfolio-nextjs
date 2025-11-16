@@ -1,60 +1,46 @@
+// Import local blog images
+import oopImage from '../assets/svg/blog/oop.png';
+import reactHooksImage from '../assets/svg/blog/react1.png';
+import unitTestingImage from '../assets/svg/blog/react2.png';
+
 export const blogData = [
     {
         id: 1,
-        title: 'SCRAPING BILLBOARD AND IMDB USING PYTHON SELENIUM',
-        description: 'Here we will use Selenium to navigate between web pages, and try to scrape data from them.',
-        date: 'Aug 7, 2020',
-        image: 'https://1.bp.blogspot.com/-jhdtUBIRD_s/XxLFKQuRz9I/AAAAAAAABsM/mClfbfDFKvsUwA7Wyi25Lzu3DEmL2lxrACNcBGAsYHQ/s1919/gta.jpg',
-        url: ''
+        title: 'Understanding the OOP Concept – A Beginners Guide',
+        description: 'This guide introduces the core principles of Object-Oriented Programming (OOP) such as encapsulation, inheritance, polymorphism, and abstraction, explained in simple terms for beginners.',
+        date: 'Mar 23, 2025',
+        image: oopImage,
+        url: 'https://medium.com/@janithmidissanayake99/understanding-the-oop-concept-a-beginners-guide-b01a85eba5eb'
     },
     {
         id: 2,
-        title: 'CHECK WEATHER FROM TERMINAL USING WTTR.IN',
-        description: 'wttr.in is a console-oriented weather forecast service that supports various information representation methods like ANSI-sequences for console HTTP clients, HTML, or PNG.',
-        date: 'Aug 11, 2020',
-        image: 'https://1.bp.blogspot.com/-OW7jX57tea4/XvnGxuEOslI/AAAAAAAABW0/R8lVT1AXDSwnvE0EGA9Ra49-LDm1ACwDgCK4BGAsYHg/s1216/wttr1.png',
-        url: ''
+        title: 'How React Hooks bridge the gap between class components and function components',
+        description: 'This article explains how React Hooks unify the benefits of class and function components, allowing developers to manage state and lifecycle features in a simpler, cleaner way without writing classes.',
+        date: 'Feb 25, 2025',
+        image: reactHooksImage,
+        url: 'https://medium.com/@janithmidissanayake99/how-react-hooks-bridge-the-gap-between-class-components-and-function-components-a75054e775bd'
     },
     {
         id: 3,
-        title: 'BEING ANONYMOUS: A BEGINNERS GUIDE',
-        description: 'Here are some basic ways to lay off the Radar',
-        date: 'Aug 14, 2020',
-        image: 'https://1.bp.blogspot.com/-OW7jX57tea4/XvnGxuEOslI/AAAAAAAABW0/R8lVT1AXDSwnvE0EGA9Ra49-LDm1ACwDgCK4BGAsYHg/s1216/wttr1.png',
-        url: ''
-    },
-    {
-        id: 4,
-        title: 'CHECK INTERNET SPEED FROM THE COMMAND LINE',
-        description: 'Want to check your internet speed from the terminal? Here\'s the perfect way to the that.',
-        date: 'Sep 17, 2020',
-        image: 'https://1.bp.blogspot.com/-XTVMsZP3HaM/Xxpl394txlI/AAAAAAAABws/zovXWiuNGg4TzBwYYVFfJ1ixDb3JfVokgCNcBGAsYHQ/w400-h195/speedtest.png',
-        url: ''
-    },
-    {
-        id: 5,
-        title: 'GET MICHAEL\'S OR TREVOR\'S VEHICLES FULLY UPGRADED IN GTA V FOR FREE',
-        description: 'In case you haven\'t heard of this game, GTA stands for \'Grand Theft Auto\'. It is an open-world game published by Rockstar Games.',
-        date: 'Oct 1, 2020',
-        image: 'https://1.bp.blogspot.com/-jhdtUBIRD_s/XxLFKQuRz9I/AAAAAAAABsM/mClfbfDFKvsUwA7Wyi25Lzu3DEmL2lxrACNcBGAsYHQ/s1919/gta.jpg',
-        url: ''
-    },
+        title: 'Why Should I Write Unit Tests for My Code? Unit Testing in Node.js with Jest',
+        description: 'This article explores the importance of unit testing, how it helps maintain code quality, and demonstrates how to set up and write effective tests in Node.js using the Jest framework.',
+        date: 'Nov 20, 2024',
+        image: unitTestingImage,
+        url: 'https://medium.com/@janithmidissanayake99/why-should-i-write-unit-tests-for-my-code-unit-testing-in-node-js-with-jest-e3f7f3476648'
+    }
 ]
-
-
 
 
 // Do not remove any fields.
 // Leave it blank instead as shown below.
 
-
 /* 
 {
-    id: 1,
-    title: 'Car Pooling System',
-    description: '',
-    date: 'Oct 1, 2020',
-    image: '',
-    url: 'https://preview.colorlib.com/theme/rezume/'
+    id: 4,
+    title: 'Your Blog Title',
+    description: 'Your description here',
+    date: 'Nov 13, 2024',
+    image: yourImage,  // Import your image at the top first
+    url: 'https://your-blog-url.com'
 }, 
 */

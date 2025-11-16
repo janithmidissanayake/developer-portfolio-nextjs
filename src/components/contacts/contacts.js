@@ -14,7 +14,6 @@ import isEmail from 'validator/lib/isEmail';
 import { ThemeContext } from '../../contexts/theme-context';
 import { contactsData } from '../../data/contacts-data';
 import { socialsData } from '../../data/socials-data';
-import styles from '../../styles/contacts.module.css';
 
 function Contacts() {
     const [open, setOpen] = useState(false);
@@ -36,22 +35,42 @@ function Contacts() {
     const handleContactForm = (e) => {
         e.preventDefault();
 
+        // Check if EmailJS credentials are configured
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            console.error('❌ EmailJS not configured! Please set up your .env.local file');
+            console.log('Service ID:', serviceId || 'MISSING');
+            console.log('Template ID:', templateId || 'MISSING');
+            console.log('Public Key:', publicKey || 'MISSING');
+            setErrMsg('Email service not configured. Please contact the administrator.');
+            setOpen(true);
+            return;
+        }
+
         if (name && email && message) {
             if (isEmail(email)) {
+                console.log('📧 Attempting to send email...');
                 emailjs.sendForm(
-                    process.env.REACT_APP_YOUR_SERVICE_ID,
-                    process.env.REACT_APP_YOUR_TEMPLATE_ID,
-                    form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
+                    serviceId,
+                    templateId,
+                    form.current, 
+                    publicKey)
                     .then((result) => {
-                        console.log('success');
+                        console.log('✅ Email sent successfully!', result.text);
                         setSuccess(true);
                         setErrMsg('');
                         setName('');
                         setEmail('');
                         setMessage('');
                         setOpen(false);
+                        setTimeout(() => setSuccess(false), 3000);
                     }, (error) => {
-                        console.log(error.text);
+                        console.error('❌ Email send failed:', error);
+                        setErrMsg('Failed to send message. Please try again.');
+                        setOpen(true);
                     });
             } else {
                 setErrMsg('Invalid email');
@@ -65,20 +84,33 @@ function Contacts() {
 
     return (
         <div
-            className={styles.contacts}
+            className="min-h-screen flex flex-col items-start justify-start relative py-16"
             id='contacts'
-            style={{ backgroundColor: theme.secondary }}
+            style={{ background: theme.quaternary }}
         >
-            <div className={styles.contactsContainer}>
-                <h1 style={{ color: theme.primary }}>Contacts</h1>
-                <div className={styles.contactsBody}>
-                    <div className={styles.contactsForm}>
-                        <form ref={form} onSubmit={handleContactForm}>
-                            <div className={styles.inputContainer}>
-                                <label htmlFor='Name'
-                                    className="bg-[#15202B] text-[#EFF3F4] 
-                                font-semibold text-[0.9rem] py-0 px-[5px] 
-                                inline-flex translate-x-[25px] translate-y-[50%]">
+            <div className="flex flex-col items-center lg:items-start justify-start px-4 sm:px-8 lg:px-24 w-full lg:w-4/5 mt-8">
+                {/* Section Title */}
+                <h1 
+                    className="text-4xl lg:text-5xl font-bold mb-12 text-center lg:text-left w-full"
+                    style={{ color: theme.primary }}
+                >
+                    Get In Touch
+                </h1>
+
+                <div className="flex flex-col lg:flex-row items-start justify-start w-full gap-12 lg:gap-16">
+                    {/* Contact Form */}
+                    <div className="w-full lg:w-2/5">
+                        <form ref={form} onSubmit={handleContactForm} className="space-y-6">
+                            {/* Name Input */}
+                            <div className="relative">
+                                <label 
+                                    htmlFor='Name'
+                                    className="absolute -top-3 left-6 px-2 text-sm font-semibold z-10"
+                                    style={{ 
+                                        color: theme.primary,
+                                        backgroundColor: theme.secondary 
+                                    }}
+                                >
                                     Name
                                 </label>
                                 <input
@@ -87,89 +119,116 @@ function Contacts() {
                                     onChange={(e) => setName(e.target.value)}
                                     type='text'
                                     name='user_name'
-                                    className={`${styles.formInput}  
-                                    border-2 border-[#8B98A5] bg-[#15202B]
-                                     text-[#EFF3F4] font-medium transition 
-                                     focus:border-[#1D9BF0]`}
+                                    className="w-full h-14 px-5 rounded-2xl outline-none transition-all duration-300
+                                             border-2 font-medium text-base
+                                             focus:scale-[1.02] focus:shadow-lg"
+                                    style={{
+                                        borderColor: theme.tertiary40 || '#8B98A5',
+                                        backgroundColor: theme.secondary,
+                                        color: theme.tertiary
+                                    }}
+                                    onFocus={(e) => e.target.style.borderColor = theme.primary}
+                                    onBlur={(e) => e.target.style.borderColor = theme.tertiary40 || '#8B98A5'}
                                 />
                             </div>
-                            <div className={styles.inputContainer}>
+
+                            {/* Email Input */}
+                            <div className="relative">
                                 <label
                                     htmlFor='Email'
-                                    className="bg-[#15202B] text-[#EFF3F4] 
-                                    font-semibold text-[0.9rem] px-[5px] 
-                                    inline-flex translate-x-[25px] 
-                                    translate-y-[50%]"
+                                    className="absolute -top-3 left-6 px-2 text-sm font-semibold z-10"
+                                    style={{ 
+                                        color: theme.primary,
+                                        backgroundColor: theme.secondary 
+                                    }}
                                 >
                                     Email
                                 </label>
                                 <input
-                                    placeholder='John@doe.com'
+                                    placeholder='john@example.com'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type='email'
                                     name='user_email'
-                                    className={`${styles.formInput}  
-                                    border-2 border-[#8B98A5] bg-[#15202B]
-                                     text-[#EFF3F4] font-medium transition
-                                      focus:border-[#1D9BF0]`}
+                                    className="w-full h-14 px-5 rounded-2xl outline-none transition-all duration-300
+                                             border-2 font-medium text-base
+                                             focus:scale-[1.02] focus:shadow-lg"
+                                    style={{
+                                        borderColor: theme.tertiary40 || '#8B98A5',
+                                        backgroundColor: theme.secondary,
+                                        color: theme.tertiary
+                                    }}
+                                    onFocus={(e) => e.target.style.borderColor = theme.primary}
+                                    onBlur={(e) => e.target.style.borderColor = theme.tertiary40 || '#8B98A5'}
                                 />
                             </div>
-                            <div className={styles.inputContainer}>
+
+                            {/* Message Textarea */}
+                            <div className="relative">
                                 <label
                                     htmlFor='Message'
-                                    className="bg-[#15202B] text-[#EFF3F4]
-                                     font-semibold text-[0.9rem] px-[5px] 
-                                     inline-flex translate-x-[25px] 
-                                     translate-y-[50%]"
+                                    className="absolute -top-3 left-6 px-2 text-sm font-semibold z-10"
+                                    style={{ 
+                                        color: theme.primary,
+                                        backgroundColor: theme.secondary 
+                                    }}
                                 >
                                     Message
                                 </label>
                                 <textarea
-                                    placeholder='Type your message....'
+                                    placeholder='Type your message here...'
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
-                                    type='text'
                                     name='message'
-                                    className={`${styles.formMessage} 
-                                    border-2 border-[#8B98A5] 
-                                    focus:border-[#1D9BF0] bg-[#15202B]
-                                     text-[#EFF3F4] font-medium transition`}
+                                    rows="6"
+                                    className="w-full px-5 py-4 rounded-2xl outline-none transition-all duration-300
+                                             border-2 font-medium text-base resize-none
+                                             focus:scale-[1.02] focus:shadow-lg"
+                                    style={{
+                                        borderColor: theme.tertiary40 || '#8B98A5',
+                                        backgroundColor: theme.secondary,
+                                        color: theme.tertiary
+                                    }}
+                                    onFocus={(e) => e.target.style.borderColor = theme.primary}
+                                    onBlur={(e) => e.target.style.borderColor = theme.tertiary40 || '#8B98A5'}
                                 />
                             </div>
 
-                            <div className={styles.submitBtn}>
-                                <button
-                                    type='submit'
-                                    className="bg-[#1D9BF0] 
-                                    hover:bg-[#8B98A5] text-[#15202B]
-                                     transition delay-200 ">
-                                    <p>{!success ? 'Send' : 'Sent'}</p>
-                                    <div className={styles.submitIcon}>
-                                        <AiOutlineSend
-                                            className={styles.sendIcon}
-                                            style={{
-                                                animation: !success
-                                                    ? 'initial'
-                                                    : 'fly 0.8s linear both',
-                                                position: success
-                                                    ? 'absolute'
-                                                    : 'initial',
-                                            }}
-                                        />
-                                        <AiOutlineCheckCircle
-                                            className={styles.successIcon}
-                                            style={{
-                                                display: !success
-                                                    ? 'none'
-                                                    : 'inline-flex',
-                                                opacity: !success ? '0' : '1',
-                                            }}
-                                        />
-                                    </div>
-                                </button>
-                            </div>
+                            {/* Submit Button */}
+                            <button
+                                type='submit'
+                                className="group relative w-full sm:w-48 h-14 rounded-full font-semibold text-base
+                                         flex items-center justify-center gap-3 overflow-hidden
+                                         transition-all duration-300 hover:scale-105 hover:shadow-xl
+                                         border-0 outline-none cursor-pointer"
+                                style={{
+                                    backgroundColor: theme.primary,
+                                    color: theme.secondary
+                                }}
+                            >
+                                <span className="relative z-10">
+                                    {!success ? 'Send Message' : 'Message Sent!'}
+                                </span>
+                                <div className="relative z-10 flex items-center justify-center">
+                                    <AiOutlineSend
+                                        className="text-2xl transition-all duration-500"
+                                        style={{
+                                            transform: success ? 'translateX(100px)' : 'translateX(0) rotate(-30deg)',
+                                            opacity: success ? 0 : 1,
+                                        }}
+                                    />
+                                    <AiOutlineCheckCircle
+                                        className="text-2xl absolute transition-all duration-500"
+                                        style={{
+                                            opacity: success ? 1 : 0,
+                                            transform: success ? 'scale(1)' : 'scale(0)',
+                                        }}
+                                    />
+                                </div>
+                            </button>
                         </form>
+
+                        {/* Snackbar for errors */}
                         <Snackbar
                             anchorOrigin={{
                                 vertical: 'top',
@@ -202,148 +261,212 @@ function Contacts() {
                         </Snackbar>
                     </div>
 
-                    <div className={styles.contactsDetails}>
-                        <a
-                            href={`mailto:${contactsData.email}`}
-                            className={styles.personalDetails}
-                        >
-                            <div className="w-[45px] h-[45px] 
-                            rounded-[50%] flex items-center 
-                            justify-center text-2xl transition 
-                            ease-in-out text-[#15202B] bg-[#8B98A5]
-                             hover:bg-[#1D9BF0] hover:scale-[1.1] 
-                             shrink delay-200"
+                    {/* Contact Details */}
+                    <div className="w-full lg:w-3/5 flex flex-col items-center lg:items-start justify-start 
+                                    lg:pl-16 space-y-8">
+                        {/* Contact Info Cards */}
+                        <div className="w-full space-y-6">
+                            {/* Email */}
+                            <a
+                                href={`mailto:${contactsData.email}`}
+                                className="group flex items-center gap-5 p-5 rounded-2xl transition-all duration-300
+                                         hover:scale-[1.02] hover:shadow-xl"
+                                style={{
+                                    background: `linear-gradient(135deg, ${theme.primary}08 0%, ${theme.primary}15 100%)`
+                                }}
                             >
-                                <FiAtSign />
-                            </div>
-                            <p style={{ color: theme.tertiary }}>
-                                {contactsData.email}
-                            </p>
-                        </a>
-                        <a
-                            href={`tel:${contactsData.phone}`}
-                            className={styles.personalDetails}
-                        >
-                            <div className="w-[45px] h-[45px] 
-                            rounded-[50%] flex items-center 
-                            justify-center text-2xl transition 
-                            ease-in-out text-[#15202B] bg-[#8B98A5]
-                             hover:bg-[#1D9BF0] hover:scale-[1.1] 
-                             shrink delay-200"
+                                <div 
+                                    className="w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                             transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
+                                             shadow-lg"
+                                    style={{
+                                        backgroundColor: theme.primary,
+                                        color: theme.secondary
+                                    }}
+                                >
+                                    <FiAtSign />
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold mb-1 opacity-70" style={{ color: theme.tertiary }}>
+                                        Email
+                                    </p>
+                                    <p className="text-base font-semibold break-all" style={{ color: theme.tertiary }}>
+                                        {contactsData.email}
+                                    </p>
+                                </div>
+                            </a>
+
+                            {/* Phone */}
+                            <a
+                                href={`tel:${contactsData.phone}`}
+                                className="group flex items-center gap-5 p-5 rounded-2xl transition-all duration-300
+                                         hover:scale-[1.02] hover:shadow-xl"
+                                style={{
+                                    background: `linear-gradient(135deg, ${theme.primary}08 0%, ${theme.primary}15 100%)`
+                                }}
                             >
-                                <FiPhone />
-                            </div>
-                            <p style={{ color: theme.tertiary }}>
-                                {contactsData.phone}
-                            </p>
-                        </a>
-                        <div className={styles.personalDetails}>
-                            <div className="w-[45px] h-[45px]
-                             rounded-[50%] flex items-center 
-                             justify-center text-2xl transition 
-                             ease-in-out text-[#15202B] bg-[#8B98A5]
-                              hover:bg-[#1D9BF0] hover:scale-[1.1]
-                               shrink delay-200"
+                                <div 
+                                    className="w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                             transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
+                                             shadow-lg"
+                                    style={{
+                                        backgroundColor: theme.primary,
+                                        color: theme.secondary
+                                    }}
+                                >
+                                    <FiPhone />
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold mb-1 opacity-70" style={{ color: theme.tertiary }}>
+                                        Phone
+                                    </p>
+                                    <p className="text-base font-semibold" style={{ color: theme.tertiary }}>
+                                        {contactsData.phone}
+                                    </p>
+                                </div>
+                            </a>
+
+                            {/* Address */}
+                            <div 
+                                className="group flex items-center gap-5 p-5 rounded-2xl transition-all duration-300
+                                         hover:scale-[1.02] hover:shadow-xl"
+                                style={{
+                                    background: `linear-gradient(135deg, ${theme.primary}08 0%, ${theme.primary}15 100%)`
+                                }}
                             >
-                                <HiOutlineLocationMarker />
+                                <div 
+                                    className="w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                             transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
+                                             shadow-lg"
+                                    style={{
+                                        backgroundColor: theme.primary,
+                                        color: theme.secondary
+                                    }}
+                                >
+                                    <HiOutlineLocationMarker />
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold mb-1 opacity-70" style={{ color: theme.tertiary }}>
+                                        Location
+                                    </p>
+                                    <p className="text-base font-semibold break-words" style={{ color: theme.tertiary }}>
+                                        {contactsData.address}
+                                    </p>
+                                </div>
                             </div>
-                            <p style={{ color: theme.tertiary }}>
-                                {contactsData.address}
-                            </p>
                         </div>
 
-                        <div className={styles.socialmediaIcons}>
-                            {socialsData.twitter && (
-                                <a
-                                    href={socialsData.twitter}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className="w-[45px] h-[45px] 
-                                    rounded-[50%] flex items-center 
-                                    justify-center text-xl transition
-                                     ease-in-out text-[#15202B] bg-[#8B98A5]
-                                      hover:bg-[#1D9BF0]"
-                                >
-                                    <FaTwitter aria-label='Twitter' />
-                                </a>
-                            )}
-                            {socialsData.github && (
-                                <a
-                                    href={socialsData.github}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className="w-[45px] h-[45px] 
-                                    rounded-[50%] flex items-center justify-center
-                                     text-xl transition ease-in-out text-[#15202B]
-                                      bg-[#8B98A5] hover:bg-[#1D9BF0]"
-                                >
-                                    <FaGithub aria-label='GitHub' />
-                                </a>
-                            )}
-                            {socialsData.linkedIn && (
-                                <a
-                                    href={socialsData.linkedIn}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className="w-[45px] h-[45px] rounded-[50%] flex 
-                                    items-center justify-center text-xl transition 
-                                    ease-in-out text-[#15202B] bg-[#8B98A5] 
-                                    hover:bg-[#1D9BF0]"
-                                >
-                                    <FaLinkedinIn aria-label='LinkedIn' />
-                                </a>
-                            )}
-
-                            {socialsData.medium && (
-                                <a
-                                    href={socialsData.medium}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className="w-[45px] h-[45px] rounded-[50%] flex 
-                                    items-center justify-center text-xl transition 
-                                    ease-in-out text-[#15202B] bg-[#8B98A5] 
-                                    hover:bg-[#1D9BF0]"
-                                >
-                                    <FaMediumM aria-label='Medium' />
-                                </a>
-                            )}
-
-
-
-                            {socialsData.stackOverflow && (
-                                <a
-                                    href={socialsData.stackOverflow}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className="w-[45px] h-[45px] rounded-[50%] flex 
-                                    items-center justify-center text-xl transition 
-                                    ease-in-out text-[#15202B] bg-[#8B98A5] 
-                                    hover:bg-[#1D9BF0]"
-                                >
-                                    <FaStackOverflow aria-label='Stack Overflow' />
-                                </a>
-                            )}
-                            {socialsData.facebook && (
-                                <a
-                                    href={socialsData.facebook}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className="w-[45px] h-[45px] rounded-[50%] flex
-                                     items-center justify-center text-xl transition
-                                      ease-in-out text-[#15202B] bg-[#8B98A5]
-                                       hover:bg-[#1D9BF0]"
-                                >
-                                    <FaFacebook aria-label='facebook' />
-                                </a>
-                            )}
+                        {/* Social Media Section */}
+                        <div className="w-full pt-8">
+                            <h3 
+                                className="text-xl font-bold mb-6 text-center lg:text-left"
+                                style={{ color: theme.primary }}
+                            >
+                                Connect With Me
+                            </h3>
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                                {socialsData.github && (
+                                    <a
+                                        href={socialsData.github}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                                 transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
+                                        style={{
+                                            backgroundColor: theme.primary,
+                                            color: theme.secondary
+                                        }}
+                                    >
+                                        <FaGithub aria-label='GitHub' />
+                                    </a>
+                                )}
+                                {socialsData.linkedIn && (
+                                    <a
+                                        href={socialsData.linkedIn}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                                 transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
+                                        style={{
+                                            backgroundColor: theme.primary,
+                                            color: theme.secondary
+                                        }}
+                                    >
+                                        <FaLinkedinIn aria-label='LinkedIn' />
+                                    </a>
+                                )}
+                                {socialsData.twitter && (
+                                    <a
+                                        href={socialsData.twitter}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                                 transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
+                                        style={{
+                                            backgroundColor: theme.primary,
+                                            color: theme.secondary
+                                        }}
+                                    >
+                                        <FaTwitter aria-label='Twitter' />
+                                    </a>
+                                )}
+                                {socialsData.medium && (
+                                    <a
+                                        href={socialsData.medium}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                                 transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
+                                        style={{
+                                            backgroundColor: theme.primary,
+                                            color: theme.secondary
+                                        }}
+                                    >
+                                        <FaMediumM aria-label='Medium' />
+                                    </a>
+                                )}
+                                {socialsData.stackOverflow && (
+                                    <a
+                                        href={socialsData.stackOverflow}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                                 transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
+                                        style={{
+                                            backgroundColor: theme.primary,
+                                            color: theme.secondary
+                                        }}
+                                    >
+                                        <FaStackOverflow aria-label='Stack Overflow' />
+                                    </a>
+                                )}
+                                {socialsData.facebook && (
+                                    <a
+                                        href={socialsData.facebook}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                                 transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
+                                        style={{
+                                            backgroundColor: theme.primary,
+                                            color: theme.secondary
+                                        }}
+                                    >
+                                        <FaFacebook aria-label='Facebook' />
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Decorative Background Image */}
             <Image
                 src={theme.contactsimg}
                 alt='contacts'
-                className={styles.contactsImg}
+                className="absolute right-[5%] top-[25%] w-[280px] pointer-events-none 
+                         hidden xl:block opacity-30"
             />
         </div>
     );
