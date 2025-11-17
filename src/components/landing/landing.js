@@ -271,13 +271,13 @@ function Landing() {
                                         hover:bg-[#8B98A5] hover:text-[#15202B]
                                          hover:border-[#8B98A5] cursor-pointer
                                          box-border"
-                                        style={{ display: 'block', visibility: 'visible', opacity: 1, width: '100%' }}
+                                        style={{ display: 'block', visibility: 'visible', opacity: 1, width: '100%', minWidth: '180px' }}
                                     >
                                         Download CV
                                     </button>
                                 </a>
                             )}
-                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-[180px] flex-shrink-0" style={{ display: 'block', visibility: 'visible', opacity: 1, pointerEvents: 'auto', textDecoration: 'none' }}>
+                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-[180px] flex-shrink-0" style={{ display: 'block', visibility: 'visible', opacity: 1, pointerEvents: 'auto', textDecoration: 'none', width: '100%' }}>
                                 <button className="w-full sm:w-[180px] bg-[#1D9BF0] 
                                 text-[#15202B] rounded-[30px] no-underline	
                                 text-base font-medium h-12 border-[3px]
@@ -285,7 +285,7 @@ function Landing() {
                                  ease-out hover:bg-[#8B98A5] hover:text-[#15202B]
                                   hover:border-[#8B98A5] cursor-pointer
                                   box-border"
-                                  style={{ display: 'block', visibility: 'visible', opacity: 1, width: '100%' }}
+                                  style={{ display: 'block', visibility: 'visible', opacity: 1, width: '100%', minWidth: '180px' }}
                                 >
                                     Contact
                                 </button>
