@@ -228,8 +228,8 @@ function Landing() {
                 </div>
 
                 {/* Right Side - Content */}
-                <div className="flex-1 flex flex-col items-start justify-center max-w-2xl relative z-10">
-                    <div className="w-full" style={{ color: theme.tertiary }}>
+                <div className="flex-1 flex flex-col items-start justify-center max-w-2xl relative z-10 w-full">
+                    <div className="w-full px-4 sm:px-0" style={{ color: theme.tertiary }}>
                         {/* <h6 style={{ color: theme.primary }}>{headerData.title}</h6> */}
                         <h1 className="text-3xl md:text-5xl font-semibold leading-tight mb-4" style={{ color: theme.tertiary }}>
                             {headerData.name}
@@ -252,14 +252,14 @@ function Landing() {
                             {headerData.desciption}
                         </p>
 
-                        <div className="flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-center sm:justify-start mt-8 mb-6 relative z-20 w-full">
+                        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-center sm:justify-start mt-8 mb-6 relative z-20 w-full px-0">
                             {headerData.resumePdf && (
                                 <a
                                     href={headerData.resumePdf}
                                     download='resume'
                                     target='_blank'
                                     rel='noreferrer'
-                                    className="cursor-pointer w-full sm:w-auto"
+                                    className="cursor-pointer w-full sm:w-[180px] flex-shrink-0"
                                 >
                                     <button
                                         className="w-full sm:w-[180px] text-[#1D9BF0] 
@@ -267,19 +267,21 @@ function Landing() {
                                         font-medium h-12 border-[3px] border-[#1D9BF0] 
                                         transition duration-100 ease-out 
                                         hover:bg-[#8B98A5] hover:text-[#15202B]
-                                         hover:border-[#8B98A5] cursor-pointer"
+                                         hover:border-[#8B98A5] cursor-pointer
+                                         box-border"
                                     >
                                         Download CV
                                     </button>
                                 </a>
                             )}
-                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-auto">
+                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-[180px] flex-shrink-0">
                                 <button className="w-full sm:w-[180px] bg-[#1D9BF0] 
                                 text-[#15202B] rounded-[30px] no-underline	
                                 text-base font-medium h-12 border-[3px]
                                  border-[#1D9BF0] transition duration-100 
                                  ease-out hover:bg-[#8B98A5] hover:text-[#15202B]
-                                  hover:border-[#8B98A5] cursor-pointer"
+                                  hover:border-[#8B98A5] cursor-pointer
+                                  box-border"
                                 >
                                     Contact
                                 </button>
