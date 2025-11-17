@@ -40,3 +40,4 @@ If you prefer to use a hosted CV (Google Drive, Dropbox, etc.):
 **Note:** Files in the `public` folder are served directly at the root path of your website.
 
 
+

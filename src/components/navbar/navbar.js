@@ -115,7 +115,7 @@ const Navbar = () => {
                 About
             </Link>
             <Link href="/#resume" onClick={handleLinkClick} className={styles.navLink} style={{ color: theme.tertiary }}>
-                Resume
+                Education
             </Link>
             <Link href="/#projects" onClick={handleLinkClick} className={styles.navLink} style={{ color: theme.tertiary }}>
                 Projects
