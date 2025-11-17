@@ -252,7 +252,7 @@ function Landing() {
                             {headerData.desciption}
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-center sm:justify-start mt-8 mb-6 relative z-20 w-full px-0">
+                        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-center sm:justify-start mt-8 mb-6 relative z-20 w-full px-0" style={{ minHeight: 'auto', visibility: 'visible', display: 'flex' }}>
                             {headerData.resumePdf && (
                                 <a
                                     href={headerData.resumePdf}
@@ -260,6 +260,7 @@ function Landing() {
                                     target='_blank'
                                     rel='noreferrer'
                                     className="cursor-pointer w-full sm:w-[180px] flex-shrink-0"
+                                    style={{ display: 'block', visibility: 'visible' }}
                                 >
                                     <button
                                         className="w-full sm:w-[180px] text-[#1D9BF0] 
@@ -269,12 +270,13 @@ function Landing() {
                                         hover:bg-[#8B98A5] hover:text-[#15202B]
                                          hover:border-[#8B98A5] cursor-pointer
                                          box-border"
+                                        style={{ display: 'block', visibility: 'visible' }}
                                     >
                                         Download CV
                                     </button>
                                 </a>
                             )}
-                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-[180px] flex-shrink-0">
+                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-[180px] flex-shrink-0" style={{ display: 'block', visibility: 'visible' }}>
                                 <button className="w-full sm:w-[180px] bg-[#1D9BF0] 
                                 text-[#15202B] rounded-[30px] no-underline	
                                 text-base font-medium h-12 border-[3px]
@@ -282,6 +284,7 @@ function Landing() {
                                  ease-out hover:bg-[#8B98A5] hover:text-[#15202B]
                                   hover:border-[#8B98A5] cursor-pointer
                                   box-border"
+                                  style={{ display: 'block', visibility: 'visible' }}
                                 >
                                     Contact
                                 </button>
