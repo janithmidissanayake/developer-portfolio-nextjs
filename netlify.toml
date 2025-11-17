@@ -1,7 +1,8 @@
 [build]
   command = "npm run build"
-  # Publish directory is handled automatically by @netlify/plugin-nextjs
-  # Do not set publish directory manually
+  # Note: When using @netlify/plugin-nextjs, publish directory should NOT be set
+  # The plugin handles the publish directory automatically
+  # If you see an error about publish directory, remove it from Netlify UI settings
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
