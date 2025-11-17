@@ -11,7 +11,7 @@ const App = ({ Component, pageProps }) => {
     <ThemeProvider theme={muiTheme}>
       <ThemeContextProvider>
         <Head>
-          <title>Portfolio of ABU SAID</title>
+          <title>Portfolio of Janithmi</title>
         </Head>
         <Component {...pageProps} />
       </ThemeContextProvider>
