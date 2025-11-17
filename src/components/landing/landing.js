@@ -231,7 +231,7 @@ function Landing() {
                 <div className="flex-1 flex flex-col items-start justify-center max-w-2xl relative z-10">
                     <div className="w-full" style={{ color: theme.tertiary }}>
                         {/* <h6 style={{ color: theme.primary }}>{headerData.title}</h6> */}
-                        <h1 className="text-5xl md:text-5xl text-3xl font-semibold leading-tight mb-4" style={{ color: theme.tertiary }}>
+                        <h1 className="text-3xl md:text-5xl font-semibold leading-tight mb-4" style={{ color: theme.tertiary }}>
                             {headerData.name}
                         </h1>
                         <TypeAnimation
