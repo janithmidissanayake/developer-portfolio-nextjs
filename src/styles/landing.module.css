@@ -1,9 +1,11 @@
 .landing {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   background: inherit;
+  padding-bottom: 2rem;
 }
 
 /* Frame around the profile image (sizes controlled responsively) */
@@ -225,6 +227,20 @@
   /* Ensure landing content starts below fixed navbar */
   .landing {
     padding-top: 5.5rem;
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 3rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure buttons are visible on mobile */
+  .landing button,
+  .landing a[href*="contacts"],
+  .landing a[download] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .landingContainer {
@@ -297,22 +313,56 @@
   .lcrContent {
     margin-top: 35%;
   }
+  
+  /* Ensure buttons are visible on very small screens */
+  .landing button,
+  .landing a[href*="contacts"],
+  .landing a[download] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin: 0.5rem 0 !important;
+  }
 }
 
 @media (max-width: 370px) {
   .lcrContent {
     margin-top: 60%;
   }
+  
+  /* Ensure buttons are visible on extra small screens */
+  .landing button,
+  .landing a[href*="contacts"],
+  .landing a[download] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin: 0.5rem 0 !important;
+  }
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) {
   .landing {
     height: 100%;
+    min-height: 100vh;
+    padding-bottom: 3rem;
   }
 
   .landingImg {
     --img-size: 150px;
     left: 50%;
     top: 20%;
+  }
+  
+  /* Ensure buttons are visible on mobile devices */
+  .landing button,
+  .landing a[href*="contacts"],
+  .landing a[download] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
   }
 }
