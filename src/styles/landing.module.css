@@ -184,6 +184,13 @@
   }
 }
 
+/* Push content down on laptop screens */
+@media (min-width: 1024px) and (max-width: 1536px) {
+  .landing {
+    padding-top: 4rem;
+  }
+}
+
 @media (max-width: 1100px) {
   .landingImg {
     --img-size: 350px;

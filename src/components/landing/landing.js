@@ -124,7 +124,7 @@ function Landing() {
                 }}
             ></div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-7xl mx-auto px-8 relative z-10 pt-16 md:pt-0">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-7xl mx-auto px-8 relative z-10 pt-16 md:pt-0 lg:pt-8">
                 {/* Left Side - Profile Image */}
                 <div className="flex-shrink-0 relative z-10 mt-8 md:mt-0">
                     {/* Animated rings around image */}
