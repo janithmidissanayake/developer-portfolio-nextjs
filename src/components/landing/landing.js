@@ -123,9 +123,9 @@ function Landing() {
                 }}
             ></div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-7xl mx-auto px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-7xl mx-auto px-8 relative z-10 pt-16 md:pt-0">
                 {/* Left Side - Profile Image */}
-                <div className="flex-shrink-0 relative z-10">
+                <div className="flex-shrink-0 relative z-10 mt-8 md:mt-0">
                     {/* Animated rings around image */}
                     <div 
                         className="absolute inset-0 rounded-full animate-ping opacity-20 pointer-events-none"
@@ -231,7 +231,7 @@ function Landing() {
                 <div className="flex-1 flex flex-col items-start justify-center max-w-2xl relative z-10">
                     <div className="w-full" style={{ color: theme.tertiary }}>
                         {/* <h6 style={{ color: theme.primary }}>{headerData.title}</h6> */}
-                        <h1 className="text-5xl font-semibold leading-tight mb-4" style={{ color: theme.tertiary }}>
+                        <h1 className="text-5xl md:text-5xl text-3xl font-semibold leading-tight mb-4" style={{ color: theme.tertiary }}>
                             {headerData.name}
                         </h1>
                         <TypeAnimation

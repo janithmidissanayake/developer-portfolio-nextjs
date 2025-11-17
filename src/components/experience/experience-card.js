@@ -15,7 +15,7 @@ function ExperienceCard({ id, company, jobtitle, startYear, endYear }) {
         <Fade direction="up" triggerOnce cascade>
             <div 
                 key={id} 
-                className="relative w-full mb-6 p-6 rounded-2xl overflow-hidden 
+                className="relative w-full mb-6 p-4 md:p-6 rounded-2xl overflow-hidden 
                           transition-all duration-500 ease-out
                           hover:scale-[1.02] hover:shadow-2xl
                           group cursor-pointer"
@@ -44,11 +44,11 @@ function ExperienceCard({ id, company, jobtitle, startYear, endYear }) {
                     style={{ background: theme.primary }}
                 ></div>
 
-                <div className="relative flex items-start gap-5">
+                <div className="relative flex items-start gap-3 md:gap-5">
                     {/* Icon with animations */}
                     <div className="relative flex-shrink-0">
                         <div 
-                            className={`w-16 h-16 rounded-full flex items-center justify-center
+                            className={`w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center
                                       transition-all duration-500
                                       ${isHovered ? 'scale-110 rotate-6' : 'scale-100 rotate-0'}
                                       shadow-lg`}
@@ -64,7 +64,7 @@ function ExperienceCard({ id, company, jobtitle, startYear, endYear }) {
                                 alt="" 
                                 width={36}
                                 height={36}
-                                className={`transition-transform duration-500 ${isHovered ? 'scale-110' : 'scale-100'}`}
+                                className={`w-7 h-7 md:w-9 md:h-9 transition-transform duration-500 ${isHovered ? 'scale-110' : 'scale-100'}`}
                             />
                         </div>
                         
@@ -109,7 +109,7 @@ function ExperienceCard({ id, company, jobtitle, startYear, endYear }) {
 
                         {/* Job title */}
                         <h4 
-                            className="text-xl font-bold leading-tight mb-2
+                            className="text-lg md:text-xl font-bold leading-tight mb-2
                                      transition-all duration-300 
                                      group-hover:translate-x-1"
                             style={{ color: theme.tertiary }}
@@ -119,7 +119,7 @@ function ExperienceCard({ id, company, jobtitle, startYear, endYear }) {
 
                         {/* Company */}
                         <div 
-                            className="flex items-center gap-2 text-base font-medium
+                            className="flex items-center gap-2 text-sm md:text-base font-medium
                                      transition-all duration-300
                                      group-hover:translate-x-1"
                             style={{ color: theme.tertiary80 || theme.tertiary, opacity: 0.9 }}
