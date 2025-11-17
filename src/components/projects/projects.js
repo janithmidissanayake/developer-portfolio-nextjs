@@ -46,7 +46,7 @@ function Projects() {
                             {(showAll ? projectsData : projectsData.slice(0, 3)).map(project => (
                                 <SingleProject
                                     theme={theme}
-                                    key={project.id}
+                                    key={`${project.id}-${theme.type}`}
                                     id={project.id}
                                     name={project.projectName}
                                     desc={project.projectDesc}

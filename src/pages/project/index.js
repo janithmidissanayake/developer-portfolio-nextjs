@@ -85,7 +85,7 @@ function ProjectPage() {
                         {filteredArticles.map(project => (
                             <SingleProject
                                 theme={theme}
-                                key={project.id}
+                                key={`${project.id}-${theme.type}`}
                                 id={project.id}
                                 name={project.projectName}
                                 desc={project.projectDesc}

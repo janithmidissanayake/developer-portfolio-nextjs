@@ -53,7 +53,7 @@ function Blog({blogs}) {
                                     date={blog.date}
                                     image={blog.image}
                                     url={blog.url}
-                                    key={blog.id}
+                                    key={`${blog.id}-${theme.type}`}
                                     id={blog.id}
                                 />
                             ))}

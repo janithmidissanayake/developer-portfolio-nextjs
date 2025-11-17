@@ -6,14 +6,15 @@ import placeholder from '../../../assets/png/placeholder.png';
 import styles from '../../../styles/singleProject.module.css';
 
 function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
-
+    const cardStyle = {
+        background: theme.quaternary
+    };
 
     return (
         <Fade bottom>
             <div
-                key={id}
                 className={styles.singleProject}
-                style={{ backgroundColor: theme.quaternary }}
+                style={cardStyle}
             >
                 <div className={styles.projectContent}>
                     <h2
