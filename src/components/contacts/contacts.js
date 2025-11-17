@@ -88,16 +88,16 @@ function Contacts() {
             id='contacts'
             style={{ background: theme.quaternary }}
         >
-            <div className="flex flex-col items-center lg:items-start justify-start px-4 sm:px-8 lg:px-24 w-full lg:w-4/5 mt-8">
+            <div className="flex flex-col items-center lg:items-start justify-start px-4 sm:px-6 md:px-8 lg:px-24 w-full lg:w-4/5 mt-4 md:mt-8">
                 {/* Section Title */}
                 <h1 
-                    className="text-4xl lg:text-5xl font-bold mb-12 text-center lg:text-left w-full"
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 text-center lg:text-left w-full"
                     style={{ color: theme.primary }}
                 >
                     Get In Touch
                 </h1>
 
-                <div className="flex flex-col lg:flex-row items-start justify-start w-full gap-12 lg:gap-16">
+                <div className="flex flex-col lg:flex-row items-start justify-start w-full gap-8 md:gap-12 lg:gap-16">
                     {/* Contact Form */}
                     <div className="w-full lg:w-2/5">
                         <form ref={form} onSubmit={handleContactForm} className="space-y-6">
@@ -263,20 +263,20 @@ function Contacts() {
 
                     {/* Contact Details */}
                     <div className="w-full lg:w-3/5 flex flex-col items-center lg:items-start justify-start 
-                                    lg:pl-16 space-y-8">
+                                    lg:pl-16 space-y-6 md:space-y-8 mt-8 lg:mt-0">
                         {/* Contact Info Cards */}
-                        <div className="w-full space-y-6">
+                        <div className="w-full space-y-4 md:space-y-6">
                             {/* Email */}
                             <a
                                 href={`mailto:${contactsData.email}`}
-                                className="group flex items-center gap-5 p-5 rounded-2xl transition-all duration-300
-                                         hover:scale-[1.02] hover:shadow-xl"
+                                className="group flex items-center gap-3 md:gap-5 p-4 md:p-5 rounded-2xl transition-all duration-300
+                                         hover:scale-[1.02] hover:shadow-xl w-full"
                                 style={{
                                     background: `linear-gradient(135deg, ${theme.primary}08 0%, ${theme.primary}15 100%)`
                                 }}
                             >
                                 <div 
-                                    className="w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                    className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl flex-shrink-0
                                              transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
                                              shadow-lg"
                                     style={{
@@ -286,11 +286,11 @@ function Contacts() {
                                 >
                                     <FiAtSign />
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <p className="text-xs font-semibold mb-1 opacity-70" style={{ color: theme.tertiary }}>
                                         Email
                                     </p>
-                                    <p className="text-base font-semibold break-all" style={{ color: theme.tertiary }}>
+                                    <p className="text-sm md:text-base font-semibold break-all" style={{ color: theme.tertiary }}>
                                         {contactsData.email}
                                     </p>
                                 </div>
@@ -299,14 +299,14 @@ function Contacts() {
                             {/* Phone */}
                             <a
                                 href={`tel:${contactsData.phone}`}
-                                className="group flex items-center gap-5 p-5 rounded-2xl transition-all duration-300
-                                         hover:scale-[1.02] hover:shadow-xl"
+                                className="group flex items-center gap-3 md:gap-5 p-4 md:p-5 rounded-2xl transition-all duration-300
+                                         hover:scale-[1.02] hover:shadow-xl w-full"
                                 style={{
                                     background: `linear-gradient(135deg, ${theme.primary}08 0%, ${theme.primary}15 100%)`
                                 }}
                             >
                                 <div 
-                                    className="w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                    className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl flex-shrink-0
                                              transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
                                              shadow-lg"
                                     style={{
@@ -316,11 +316,11 @@ function Contacts() {
                                 >
                                     <FiPhone />
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <p className="text-xs font-semibold mb-1 opacity-70" style={{ color: theme.tertiary }}>
                                         Phone
                                     </p>
-                                    <p className="text-base font-semibold" style={{ color: theme.tertiary }}>
+                                    <p className="text-sm md:text-base font-semibold break-words" style={{ color: theme.tertiary }}>
                                         {contactsData.phone}
                                     </p>
                                 </div>
@@ -328,14 +328,14 @@ function Contacts() {
 
                             {/* Address */}
                             <div 
-                                className="group flex items-center gap-5 p-5 rounded-2xl transition-all duration-300
-                                         hover:scale-[1.02] hover:shadow-xl"
+                                className="group flex items-center gap-3 md:gap-5 p-4 md:p-5 rounded-2xl transition-all duration-300
+                                         hover:scale-[1.02] hover:shadow-xl w-full"
                                 style={{
                                     background: `linear-gradient(135deg, ${theme.primary}08 0%, ${theme.primary}15 100%)`
                                 }}
                             >
                                 <div 
-                                    className="w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                    className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl flex-shrink-0
                                              transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
                                              shadow-lg"
                                     style={{
@@ -345,11 +345,11 @@ function Contacts() {
                                 >
                                     <HiOutlineLocationMarker />
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <p className="text-xs font-semibold mb-1 opacity-70" style={{ color: theme.tertiary }}>
                                         Location
                                     </p>
-                                    <p className="text-base font-semibold break-words" style={{ color: theme.tertiary }}>
+                                    <p className="text-sm md:text-base font-semibold break-words" style={{ color: theme.tertiary }}>
                                         {contactsData.address}
                                     </p>
                                 </div>
@@ -357,20 +357,20 @@ function Contacts() {
                         </div>
 
                         {/* Social Media Section */}
-                        <div className="w-full pt-8">
+                        <div className="w-full pt-6 md:pt-8">
                             <h3 
-                                className="text-xl font-bold mb-6 text-center lg:text-left"
+                                className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-center lg:text-left"
                                 style={{ color: theme.primary }}
                             >
                                 Connect With Me
                             </h3>
-                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4">
                                 {socialsData.github && (
                                     <a
                                         href={socialsData.github}
                                         target='_blank'
                                         rel='noreferrer'
-                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl
                                                  transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
                                         style={{
                                             backgroundColor: theme.primary,
@@ -385,7 +385,7 @@ function Contacts() {
                                         href={socialsData.linkedIn}
                                         target='_blank'
                                         rel='noreferrer'
-                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl
                                                  transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
                                         style={{
                                             backgroundColor: theme.primary,
@@ -400,7 +400,7 @@ function Contacts() {
                                         href={socialsData.twitter}
                                         target='_blank'
                                         rel='noreferrer'
-                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl
                                                  transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
                                         style={{
                                             backgroundColor: theme.primary,
@@ -415,7 +415,7 @@ function Contacts() {
                                         href={socialsData.medium}
                                         target='_blank'
                                         rel='noreferrer'
-                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl
                                                  transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
                                         style={{
                                             backgroundColor: theme.primary,
@@ -430,7 +430,7 @@ function Contacts() {
                                         href={socialsData.stackOverflow}
                                         target='_blank'
                                         rel='noreferrer'
-                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl
                                                  transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
                                         style={{
                                             backgroundColor: theme.primary,
@@ -445,7 +445,7 @@ function Contacts() {
                                         href={socialsData.facebook}
                                         target='_blank'
                                         rel='noreferrer'
-                                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl
                                                  transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-md"
                                         style={{
                                             backgroundColor: theme.primary,

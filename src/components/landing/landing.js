@@ -252,17 +252,17 @@ function Landing() {
                             {headerData.desciption}
                         </p>
 
-                        <div className="flex flex-wrap gap-4 items-center mt-8 mb-6 relative z-20">
+                        <div className="flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-center sm:justify-start mt-8 mb-6 relative z-20 w-full">
                             {headerData.resumePdf && (
                                 <a
                                     href={headerData.resumePdf}
                                     download='resume'
                                     target='_blank'
                                     rel='noreferrer'
-                                    className="cursor-pointer"
+                                    className="cursor-pointer w-full sm:w-auto"
                                 >
                                     <button
-                                        className="w-[180px] text-[#1D9BF0] 
+                                        className="w-full sm:w-[180px] text-[#1D9BF0] 
                                         rounded-[30px] no-underline text-base 
                                         font-medium h-12 border-[3px] border-[#1D9BF0] 
                                         transition duration-100 ease-out 
@@ -273,8 +273,8 @@ function Landing() {
                                     </button>
                                 </a>
                             )}
-                            <Link href='/#contacts' className="cursor-pointer">
-                                <button className="w-[180px] bg-[#1D9BF0] 
+                            <Link href='/#contacts' className="cursor-pointer w-full sm:w-auto">
+                                <button className="w-full sm:w-[180px] bg-[#1D9BF0] 
                                 text-[#15202B] rounded-[30px] no-underline	
                                 text-base font-medium h-12 border-[3px]
                                  border-[#1D9BF0] transition duration-100 
