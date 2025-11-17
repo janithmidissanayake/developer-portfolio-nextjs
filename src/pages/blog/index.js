@@ -33,7 +33,7 @@ function BlogPage() {
             "&::placeholder": {
                 color: theme.tertiary,
             },
-            [t.breakpoints.down('sm')]: {
+            '@media (max-width: 600px)': {
                 width: '350px',
             },
         },
@@ -54,7 +54,7 @@ function BlogPage() {
                 color: theme.tertiary,
                 transform: 'scale(1.1)',
             },
-            [t.breakpoints.down('sm')]: {
+            '@media (max-width: 600px)': {
                 fontSize: '1.8rem',
             },
         },

@@ -15,7 +15,11 @@ function SingleBlog({ theme, title, desc, date, image, url, id }) {
                 <div
                     className={styles.singleBlogImage}
                     style={{ backgroundColor: theme.secondary }}>
-                    <img src={image ? image : placeholder} alt={title} />
+                    <img 
+                        src={image ? image.src || image : placeholder} 
+                        alt={title}
+                        className={styles.blogImage}
+                    />
                 </div>
                 <div className={styles.singleBlogBody}>
                     <p style={{ color: theme.primary }}>{timeConverter(date)}</p>
